@@ -3,7 +3,7 @@
 namespace Mpietrucha\Macros;
 
 use ReflectionMethod;
-use Mpietrucha\Contracts\LoaderInterface;
+use Mpietrucha\Macros\Contracts\LoaderInterface;
 use Illuminate\Support\Collection;
 use Mpietrucha\Reflector\Reflector;
 use Closure;
