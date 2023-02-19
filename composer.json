@@ -1,0 +1,28 @@
+{
+    "name": "mpietrucha/laravel-macros",
+    "description": "Usefull macros for Laravel",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Mpietrucha\\Macros\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Michał Pietrucha",
+            "email": "michal.pietrucha@off-site.pl"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Mpietrucha\\Macros\\MacrosServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
