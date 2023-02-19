@@ -1,6 +1,6 @@
 {
     "name": "mpietrucha/laravel-macros",
-    "licence": "MIT",
+    "license": "MIT",
     "description": "Usefull macros for Laravel",
     "type": "library",
     "autoload": {
