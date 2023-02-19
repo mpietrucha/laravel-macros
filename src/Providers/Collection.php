@@ -4,6 +4,7 @@ namespace Mpietrucha\Macros\Providers;
 
 use Illuminate\Support\Collection as Provider;
 use Mpietrucha\Macros\ReflectionLoader;
+use Closure;
 
 class Collection extends ReflectionLoader
 {
