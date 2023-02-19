@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 use Mpietrucha\Reflector\Reflector;
 use Closure;
 
-class ReflectionLoader implements LoaderInterface
+abstract class ReflectionLoader implements LoaderInterface
 {
     public static function loadIntoProvider(): void
     {
