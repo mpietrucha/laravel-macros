@@ -5,7 +5,7 @@ namespace Mpietrucha\Macros;
 use Illuminate\Support\ServiceProvider;
 use Mpietrucha\Macros\Providers;
 
-class MacrosServiceProvider
+class MacrosServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
