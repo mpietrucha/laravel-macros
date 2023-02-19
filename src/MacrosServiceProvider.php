@@ -9,9 +9,7 @@ class MacrosServiceProvider
 {
     public function boot(): void
     {
-        Providers\Carbon::loadIntoProvider();
         Providers\Collection::loadIntoProvider();
-        Providers\Eloquent::loadIntoProvider();
         Providers\Stringable::loadIntoProvider();
     }
 

@@ -2,8 +2,11 @@
 
 namespace Mpietrucha\Macros;
 
+use ReflectionMethod;
 use Mpietrucha\Contracts\LoaderInterface;
 use Illuminate\Support\Collection;
+use Mpietrucha\Reflector\Reflector;
+use Closure;
 
 class ReflectionLoader implements LoaderInterface
 {
@@ -14,6 +17,24 @@ class ReflectionLoader implements LoaderInterface
 
     public function provides(): Collection
     {
+        return Reflector::create(self::class)
+            ->filter($this->filterProtectedStaticMacrosReturningClosure(...))
+            ->mapWithKeys($this->mapToMacroNameClosureArray(...));
+    }
 
+    protected function filterProtectedStaticMacrosReturningClosure(ReflectionMethod $method): bool
+    {
+        if (! $method->getReturnType()?->getName() === Closure::class) {
+            return false;
+        }
+
+        return $method->isStatic() && $method->isProtected();
+    }
+
+    protected function mapToMacroNameClosureArray(ReflectionMethod $method): array
+    {
+        $method = $method->getName();
+
+        return [$method => $this->$method()];
     }
 }
