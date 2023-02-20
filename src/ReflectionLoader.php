@@ -5,7 +5,7 @@ namespace Mpietrucha\Macros;
 use ReflectionMethod;
 use Mpietrucha\Macros\Contracts\LoaderInterface;
 use Illuminate\Support\Collection;
-use Mpietrucha\Reflector\Reflector;
+use Mpietrucha\Support\Reflector;
 use Closure;
 
 abstract class ReflectionLoader implements LoaderInterface
