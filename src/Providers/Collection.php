@@ -43,11 +43,19 @@ class Collection extends ReflectionLoader
         return fn (int $times = 1, ?string $prepend = null, ?string $append = null) => str($this->join(Collection::times($times)->map(fn () => $prepend . PHP_EOL . $append)->toWord()));
     }
 
-    protected static function mapOnArrayTo(): Closure
+    protected static function toStringable(): Closure
     {
-        return function (Closure $to) {
-            return $this->map(fn (mixed $i) => Types::array($i) ? ConditionalResolver::toValue($to, $i, spreadParams: false) : $i);
-        };
+        return fn () => $this->map(fn (string $i) => str($i));
+    }
+
+    protected static function toDirectory(): Closure
+    {
+        return fn () => str($this->join(DIRECTORY_SEPARATOR));
+    }
+
+    protected static function toObject(): Closure
+    {
+        return fn () => (object) [...$this];
     }
 
     protected static function recursive(): Closure
@@ -60,14 +68,11 @@ class Collection extends ReflectionLoader
         return fn () => $this->mapOnArrayTo(fn (array $i) => (object) $i);
     }
 
-    protected static function toObject(): Closure
+    protected static function mapOnArrayTo(): Closure
     {
-        return fn () => (object) [...$this];
-    }
-
-    protected static function toStringable(): Closure
-    {
-        return fn () => $this->map(fn (string $i) => str($i));
+        return function (Closure $to) {
+            return $this->map(fn (mixed $i) => Types::array($i) ? with($to, $i) : $i);
+        };
     }
 
     protected static function onlySorted(): Closure
@@ -97,7 +102,7 @@ class Collection extends ReflectionLoader
     protected static function whenCount(): Closure
     {
         return fn (Closure|int $count, Closure $callback) => $this->when(
-            ConditionalResolver::toValue($count, $this) == (Types::int($count) ? $this->count() : true),
+            with($count, $this) == (Types::int($count) ? $this->count() : true),
             $callback
         );
     }

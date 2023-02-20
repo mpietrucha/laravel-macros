@@ -5,6 +5,7 @@ namespace Mpietrucha\Macros\Providers;
 use Illuminate\Support\Stringable as Provider;
 use Mpietrucha\Macros\ReflectionLoader;
 use Closure;
+use Mpietrucha\Support\Hash;
 
 class Stringable extends ReflectionLoader
 {
@@ -51,5 +52,10 @@ class Stringable extends ReflectionLoader
     protected static function toDotWordsCollection(): Closure
     {
         return fn () => $this->explode('.');
+    }
+
+    protected static function md5(): Closure
+    {
+        return fn () => str(Hash::md5($this->toString()));
     }
 }
