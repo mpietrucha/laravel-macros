@@ -9,6 +9,7 @@ class MacrosServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
+        Providers\File::loadIntoProvider();
         Providers\Collection::loadIntoProvider();
         Providers\Stringable::loadIntoProvider();
     }
