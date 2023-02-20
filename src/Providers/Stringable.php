@@ -24,6 +24,11 @@ class Stringable extends ReflectionLoader
         return fn (string $replace) => $this->replaceFirst($replace, '');
     }
 
+    protected static function extension(): Closure
+    {
+        return fn (string $extension) => $this->finish('.' . $extension);
+    }
+
     protected static function toDatabaseField(): Closure
     {
         return fn () => $this->replace('\\', ' ')->snake()->lower();
