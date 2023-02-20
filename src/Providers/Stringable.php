@@ -24,14 +24,19 @@ class Stringable extends ReflectionLoader
         return fn (string $replace) => $this->replaceFirst($replace, '');
     }
 
-    protected static function letters(): Closure
-    {
-        return fn () => collect(str_split($this->toString()));
-    }
-
     protected static function toDatabaseField(): Closure
     {
         return fn () => $this->replace('\\', ' ')->snake()->lower();
+    }
+
+    protected static function md5(): Closure
+    {
+        return fn () => str(Hash::md5($this->toString()));
+    }
+
+    protected static function toLettersCollection(): Closure
+    {
+        return fn () => collect(str_split($this->toString()));
     }
 
     protected static function toNewLineCollection(): Closure
@@ -52,10 +57,5 @@ class Stringable extends ReflectionLoader
     protected static function toDotWordsCollection(): Closure
     {
         return fn () => $this->explode('.');
-    }
-
-    protected static function md5(): Closure
-    {
-        return fn () => str(Hash::md5($this->toString()));
     }
 }
