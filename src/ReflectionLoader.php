@@ -12,7 +12,7 @@ abstract class ReflectionLoader implements LoaderInterface
 {
     public static function loadIntoProvider(): void
     {
-        with(new static)->provides()->each(fn (Closure $macro, string $name) => static::provider()::macro($name, $macro));
+        value(new static)->provides()->each(fn (Closure $macro, string $name) => static::provider()::macro($name, $macro));
     }
 
     public function provides(): Collection
