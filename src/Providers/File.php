@@ -13,12 +13,12 @@ class File extends ReflectionLoader
         return Provider::class;
     }
 
-    public static function collectAllFiles(): Closure
+    protected static function collectAllFiles(): Closure
     {
         return fn (string $path) => collect($this->allFiles($path));
     }
 
-    public static function collectFiles(): Closure
+    protected static function collectFiles(): Closure
     {
         return fn (string $path) => collect($this->files($path));
     }
