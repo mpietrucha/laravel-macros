@@ -17,7 +17,7 @@ abstract class ReflectionLoader implements LoaderInterface
 
     public function provides(): Collection
     {
-        return Reflector::create(self::class)
+        return Reflector::create(static::class)
             ->methods()
             ->filter($this->filterProtectedStaticMacrosReturningClosure(...))
             ->mapWithKeys($this->mapToMacroNameClosureArray(...));
