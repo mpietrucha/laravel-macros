@@ -63,4 +63,9 @@ class Stringable extends ReflectionLoader
     {
         return fn () => $this->explode('.');
     }
+
+    protected static function toCommaWordsCollection(): Closure
+    [
+        return fn () => $this->explode(',');
+    ]
 }
