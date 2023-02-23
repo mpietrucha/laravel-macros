@@ -26,7 +26,7 @@ class Stringable extends ReflectionLoader
 
     protected static function extension(): Closure
     {
-        return fn (string $extension) => $this->finish('.' . $extension)->rtrin('.');
+        return fn (string $extension) => $this->finish('.' . $extension)->rtrim('.');
     }
 
     protected static function toDatabaseField(): Closure
